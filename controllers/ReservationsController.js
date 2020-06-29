@@ -5,17 +5,18 @@ const User = require('../models/user');
 
 exports.index = async (req, res) => {
   try {
-    const reservation = await Reservation
+  //  {'user': req.session.userId}
+    const reservations = await Reservation
       .find()
       .populate('user')
       .sort({updatedAt: 'desc'});
 
     res.render(`${viewPath}/index`, {
-      pageTitle: 'Archive',
-      reservation: reservation
+      pageTitle: 'Reservations',
+      reservations: reservations
     });
   } catch (error) {
-    req.flash('danger', `There was an error displaying the archive: ${error}`);
+    req.flash('danger', `There was an error displaying your reservations: ${error}`);
     res.redirect('/');
   }
 };
@@ -42,7 +43,6 @@ exports.new = (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    console.log(req.session.passport);
     const { user: email } = req.session.passport;
     const user = await User.findOne({email: email});
     console.log('User', user);

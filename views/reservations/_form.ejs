@@ -3,24 +3,25 @@
     <input type="hidden" name="id" value="<%= formData.id %>">
   <% } %>
 
+  <% const restaurants = ["Kelseys", "Montanas", "Outbacks", "Harveys", "Swiss Chalet"] %>
   <div class="form-group">
     <label for="restaurant">Restaurant</label>
-    <select name="restaurant" class="form-control">
+    <select name="restaurantName" class="form-control">
       <option>Select a Restaurant</option>
       <% for (let restaurant of restaurants) { %>
-        <option <%= (restaurant === formData.restaurant) && 'selected' %> value="<%= restaurant %>"><%= restaurant %></option>
+        <option <%= (restaurant === formData.restaurantName) && 'selected' %> value="<%= restaurant %>"><%= restaurant %></option>
       <% } %>
     </select>
   </div>
 
   <div class="form-group">
-    <label for="dateAndTime">Date and Time</label>
-    <input type="datetime-local" name="dateAndTime" class="form-control" value="<%= formData.dateAndTime %>">
+    <label for="time">Date and Time</label>
+    <input type="datetime-local" name="time" class="form-control" value="<%= formData.time %>">
   </div>
 
   <div class="form-group">
-    <label for="quantityOfGuests">Number of Guests</label>
-    <input type="number" name="quantityOfGuests" class="form-control" value="<%= formData.quantityOfGuests %>" min="1" step="1"/>
+    <label for="guestQuantity">Number of Guests</label>
+    <input type="number" name="guestQuantity" class="form-control" value="<%= formData.guestQuantity %>" min="1" step="1"/>
   </div>
 
   <div class="form-group">
